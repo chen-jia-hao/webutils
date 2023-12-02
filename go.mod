@@ -1,4 +1,4 @@
-module webutils
+module github.com/chen-jia-hao/webutils
 
 go 1.19
 
