@@ -13,7 +13,7 @@ var (
     TimeFmt   = "2006-01-02 15:04:05"
 )
 
-func createLog(logfile string) *zap.SugaredLogger {
+func CreateLog(logfile string) *zap.SugaredLogger {
     encoderConfig := zap.NewProductionEncoderConfig()
     customTimeEncoder := func(t time.Time, enc zapcore.PrimitiveArrayEncoder) {
         enc.AppendString(t.Format(TimeFmtMS))

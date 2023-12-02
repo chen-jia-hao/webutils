@@ -9,14 +9,14 @@ import (
     "time"
 )
 
-func waitToSecond(targetSecond int, aheadMs int) time.Duration {
+func WaitToSecond(targetSecond int, aheadMs int) time.Duration {
     now := time.Now()
 
     waitDuration := time.Duration((targetSecond-now.Second())*1000_000_000 - now.Nanosecond() - aheadMs*1000_000)
     return waitDuration
 }
 
-func getWaiMaiSeverTime() (timestamp int64, err error) {
+func GetWaiMaiSeverTime() (timestamp int64, err error) {
     client := resty.New()
     client.SetTimeout(time.Second * 20)
     timeUrl := "https://promotion.waimai.meituan.com/lottery/limitcouponcomponent/getTime"
@@ -58,9 +58,9 @@ func getWaiMaiSeverTime() (timestamp int64, err error) {
     return
 }
 
-func getNextMinuteMs(aheadMs int) (time.Duration, time.Duration, error) {
-    timestamp, err := getWaiMaiSeverTime()
-    duration := waitToSecond(60, aheadMs)
+func GetNextMinuteMs(aheadMs int) (time.Duration, time.Duration, error) {
+    timestamp, err := GetWaiMaiSeverTime()
+    duration := WaitToSecond(60, aheadMs)
     if err != nil {
         return 0, 0, fmt.Errorf("获取服务器时间失败，%s", err.Error())
     }
@@ -71,7 +71,7 @@ func getNextMinuteMs(aheadMs int) (time.Duration, time.Duration, error) {
     return duration, gap, nil
 }
 
-func cookieToMap(cookie string) map[string]string {
+func CookieToMap(cookie string) map[string]string {
     result := make(map[string]string)
     for _, s := range strings.Split(cookie, ";") {
         pair := strings.SplitN(s, "=", 2)

@@ -197,7 +197,7 @@ var (
     }
 )
 
-func randomUA() string {
+func RandomUA() string {
     rand.Seed(time.Now().UnixNano())
     return userAgents[rand.Intn(len(userAgents))]
 }
