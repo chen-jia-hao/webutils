@@ -4,6 +4,8 @@ import (
     "errors"
     "fmt"
     "github.com/go-resty/resty/v2"
+    "html"
+    "math/rand"
     "strconv"
     "strings"
     "time"
@@ -80,4 +82,20 @@ func CookieToMap(cookie string) map[string]string {
         }
     }
     return result
+}
+
+func RandomEmoji() string {
+    rand.Seed(time.Now().UnixNano())
+    // http://apps.timwhitlock.info/emoji/tables/unicode
+    emoji := [][]int{
+        // Emoticons icons
+        {128513, 128591},
+        // Transport and map symbols
+        {128640, 128704},
+    }
+    r := emoji[rand.Int()%len(emoji)]
+    min := r[0]
+    max := r[1]
+    n := rand.Intn(max-min+1) + min
+    return html.UnescapeString("&#" + strconv.Itoa(n) + ";")
 }
