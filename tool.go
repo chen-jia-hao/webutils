@@ -85,7 +85,6 @@ func CookieToMap(cookie string) map[string]string {
 }
 
 func RandomEmoji() string {
-    rand.Seed(time.Now().UnixNano())
     // http://apps.timwhitlock.info/emoji/tables/unicode
     emoji := [][]int{
         // Emoticons icons
