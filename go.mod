@@ -10,6 +10,7 @@ require (
 )
 
 require (
+	github.com/mileusna/useragent v1.3.5 // indirect
 	go.uber.org/multierr v1.10.0 // indirect
 	golang.org/x/net v0.17.0 // indirect
 )
